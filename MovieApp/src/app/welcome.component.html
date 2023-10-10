@@ -1,8 +1,24 @@
-<p>Willkommen bei der Movie-Datenbank!</p>
+<h3>Hello {{ fullName() }}, Willkommen bei der Movie-Datenbank!</h3>
 <app-led [color]="startColor" (colorChanged)="ledChanged($event)"></app-led>
 
-<input [(ngModel)]="firstName" />
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-<input [(ngModel)]="lastName" />
+  <div>
+    <label for="firstName">First Name:</label>
+    <input id="firstName" type="text" formControlName="firstName">
+    <div *ngIf="(form.controls.firstName.invalid || form.controls.firstName.errors?.['required']) && form.controls.firstName.touched">
+      First Name is required.
+    </div>
+  </div>
 
-<span>Hello {{ fullName() }} </span>
+  <div>
+    <label for="lastName">Last Name:</label>
+    <input id="lastName" type="text" formControlName="lastName">
+    <div *ngIf="(form.controls.lastName.invalid || form.controls.lastName.errors?.['required']) && form.controls.lastName.touched">
+      Last Name is required.
+    </div>
+  </div>
+
+  <button type="submit">Submit</button>
+
+</form>

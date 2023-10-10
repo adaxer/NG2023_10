@@ -1,4 +1,5 @@
-import { Component, computed, signal, effect } from '@angular/core';
+import { Component, computed, signal, effect, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-welcome',
@@ -6,7 +7,11 @@ import { Component, computed, signal, effect } from '@angular/core';
   styles: [
   ]
 })
-export class WelcomeComponent {
+export class WelcomeComponent implements OnInit {
+
+  constructor(private fb: FormBuilder) { }
+  form!: FormGroup;
+
   startColor = "Orange";
 
   firstNameSignal = signal("");
@@ -27,5 +32,23 @@ export class WelcomeComponent {
 
   ledChanged(newcolor: string) {
     console.log(`Changed to ${newcolor}`);
+  }
+  ngOnInit() {
+    // https://stackoverflow.com/questions/70106472/property-fname-comes-from-an-index-signature-so-it-must-be-accessed-with-fn
+    this.form = this.fb.group({
+      firstName: [this.firstName, Validators.required],
+      lastName: [this.lastName, Validators.required]
+    });
+  }
+
+  onSubmit() {
+    this.form.markAllAsTouched();
+    if (this.form.valid) {
+      this.firstName = this.form.value.firstName;
+      this.lastName = this.form.value.lastName;
+      console.log('Form Submitted!', this.form.value);
+    } else {
+      console.log('Form is invalid!');
+    }
   }
 }
