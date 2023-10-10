@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Movie } from '../models/movie';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Environment } from '../environments/environment';
+import { MovieInfo } from '../models/movieInfo';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
+  baseUrl: string = "";
 
   private movies: Movie[] = [
     { id: 1, title: "Blade Runner", director: "Ridley Scott", released: new Date("1982-06-25") },
@@ -18,15 +24,19 @@ export class MovieService {
     { id: 9, title: "The Martian", director: "Ridley Scott", released: new Date("2015-09-30") },
     { id: 10, title: "Arrival", director: "Denis Villeneuve", released: new Date("2016-11-11") }
   ];
-  constructor() { }
 
-  getMovies(): Movie[] {
-    return this.movies;
+  constructor(private httpClient: HttpClient, env: Environment) {
+    this.baseUrl = env.apiBaseUrl;
   }
 
-  getDetails(id: number): Movie {
-    let movie = (this.getMovies().filter(m=>m.id === id))[0];
-    return movie;
+  getMovies(): Observable<MovieInfo[]> {
+    let result = this.httpClient.get<MovieInfo[]>(`${this.baseUrl}/movie/list`);
+    return result;
+  }
+
+  getDetails(id: number): Observable<Movie> | undefined{
+    let result = this.httpClient.get<Movie>(`${this.baseUrl}/movie/${id}`);
+    return result;
   }
 
 

@@ -19,7 +19,7 @@ export class MovieDetailComponent implements OnInit {
     this.route.paramMap.subscribe(paramMap=> {
       let id = +paramMap.get("id")!;
       // Details abrufen
-      this.movie = this.service.getDetails(id);
+      this.service.getDetails(id)?.subscribe(m=>this.movie = m);
     });
   }
 }

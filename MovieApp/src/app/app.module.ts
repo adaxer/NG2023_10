@@ -4,12 +4,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatListModule} from '@angular/material/list';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatTableModule} from '@angular/material/table';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTableModule } from '@angular/material/table';
+import { MatCard, MatCardModule } from '@angular/material/card'
+import { MatButtonModule } from '@angular/material/button'
 import { WelcomeComponent } from './welcome.component';
 import { MovieListComponent } from './movies/movie-list.component';
 import { MovieDetailComponent } from './movies/movie-detail.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -17,7 +20,7 @@ import { MovieDetailComponent } from './movies/movie-detail.component';
     AppComponent,
     WelcomeComponent,
     MovieListComponent,
-    MovieDetailComponent,
+    MovieDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,10 @@ import { MovieDetailComponent } from './movies/movie-detail.component';
     BrowserAnimationsModule,
     MatListModule,
     MatSidenavModule,
-    MatTableModule
+    MatTableModule,
+    MatCardModule,
+    MatButtonModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

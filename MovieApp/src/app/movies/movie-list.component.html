@@ -1,29 +1,25 @@
 
-<div>
+<div *ngIf="movies">
   <mat-list>
     <mat-list-item *ngFor="let movie of movies" [routerLink]="['/movie', movie!.id]">
-      <span matListItemTitle>{{ movie.title }}</span>
-      <span matListItemLine>{{ movie.director}} ({{movie.released | date}})</span>
+      <span matListItemTitle>{{ movie.info }}</span>
     </mat-list-item>
   </mat-list>
 </div>
 
-<div class="mat-elevation-z8">
+<!-- <div *ngIf="movies" class="mat-elevation-z8">
   <mat-table [dataSource]="movies">
 
-    <!-- Title Column -->
     <ng-container matColumnDef="title">
       <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
       <mat-cell *matCellDef="let movie">{{ movie.title }}</mat-cell>
     </ng-container>
 
-    <!-- Director Column -->
     <ng-container matColumnDef="director">
       <mat-header-cell *matHeaderCellDef>Director</mat-header-cell>
       <mat-cell *matCellDef="let movie">{{ movie.director }}</mat-cell>
     </ng-container>
 
-    <!-- Released Date Column -->
     <ng-container matColumnDef="released">
       <mat-header-cell *matHeaderCellDef>Released Date</mat-header-cell>
       <mat-cell *matCellDef="let movie">{{ movie.released | date }}</mat-cell>
@@ -33,4 +29,4 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
   </mat-table>
-</div>
+</div> -->
