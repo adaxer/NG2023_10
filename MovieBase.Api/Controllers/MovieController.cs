@@ -32,6 +32,7 @@ public class MovieController : ControllerBase
     [ResponseCache(Duration=10)]
     public async Task<IActionResult> List()
     {
+        await Task.Delay(1000);
         var result = (await db.Movies.ToListAsync()).Select(mapper.Map<Movie, MovieDTO>).ToList();
         return Ok(result);
     }

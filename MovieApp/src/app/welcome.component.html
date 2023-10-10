@@ -1,1 +1,8 @@
 <p>Willkommen bei der Movie-Datenbank!</p>
+<app-led [color]="startColor" (colorChanged)="ledChanged($event)"></app-led>
+
+<input [(ngModel)]="firstName" />
+
+<input [(ngModel)]="lastName" />
+
+<span>Hello {{ fullName }} </span>
