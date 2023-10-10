@@ -1,0 +1,16 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <!-- Side Navigation -->
+  <mat-sidenav #sidenav class="sidenav" mode="side" opened>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['/welcome']">Willkommen</a>
+      <a mat-list-item [routerLink]="['/movies']">Film-Liste</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Main Content Area -->
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
