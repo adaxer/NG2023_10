@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedControlsModule } from 'projects/shared-controls/src/public-api';
 
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -15,7 +16,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { WelcomeComponent } from './welcome.component';
 import { MovieListComponent } from './movies/movie-list.component';
 import { MovieDetailComponent } from './movies/movie-detail.component';
-import { LedComponent } from './shared/led.component';
+import { LedComponent } from '../../projects/shared-controls/src/lib/led.component';
 import { ToUpperPipe } from './pipes/to-upper.pipe';
 
 
@@ -25,7 +26,6 @@ import { ToUpperPipe } from './pipes/to-upper.pipe';
     WelcomeComponent,
     MovieListComponent,
     MovieDetailComponent,
-    LedComponent,
     ToUpperPipe
   ],
   imports: [
@@ -39,7 +39,8 @@ import { ToUpperPipe } from './pipes/to-upper.pipe';
     MatCardModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedControlsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

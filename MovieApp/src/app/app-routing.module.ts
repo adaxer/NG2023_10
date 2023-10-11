@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
   { path: 'movies', component: MovieListComponent },
   { path: 'movie/:id', component: MovieDetailComponent },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
   { path: '**', redirectTo:"/welcome" },
 ];
 
