@@ -1,4 +1,4 @@
-<h3>Hello {{ fullName() }}, Willkommen bei der Movie-Datenbank!</h3>
+<h3>Hello {{fullName()}},  {{'Willkommen bei der Movie-Datenbank!' | toUpper}}</h3>
 <app-led [color]="startColor" (colorChanged)="ledChanged($event)"></app-led>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">

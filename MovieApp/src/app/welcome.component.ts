@@ -46,7 +46,7 @@ export class WelcomeComponent implements OnInit {
     if (this.form.valid) {
       this.firstName = this.form.value.firstName;
       this.lastName = this.form.value.lastName;
-      console.log('Form Submitted!', this.form.value);
+      console.log('Form is Submitted!', this.form.value);
     } else {
       console.log('Form is invalid!');
     }

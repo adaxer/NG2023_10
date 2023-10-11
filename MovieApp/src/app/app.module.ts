@@ -16,6 +16,7 @@ import { WelcomeComponent } from './welcome.component';
 import { MovieListComponent } from './movies/movie-list.component';
 import { MovieDetailComponent } from './movies/movie-detail.component';
 import { LedComponent } from './shared/led.component';
+import { ToUpperPipe } from './pipes/to-upper.pipe';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { LedComponent } from './shared/led.component';
     WelcomeComponent,
     MovieListComponent,
     MovieDetailComponent,
-    LedComponent
+    LedComponent,
+    ToUpperPipe
   ],
   imports: [
     BrowserModule,
