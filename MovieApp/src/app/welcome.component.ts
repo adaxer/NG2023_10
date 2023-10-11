@@ -1,5 +1,6 @@
 import { Component, computed, signal, effect, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MovieService } from './services/movie.service';
 
 @Component({
   selector: 'app-welcome',
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private service: MovieService) { }
   form!: FormGroup;
 
   startColor = "Orange";
@@ -39,6 +40,9 @@ export class WelcomeComponent implements OnInit {
       firstName: [this.firstName, Validators.required],
       lastName: [this.lastName, Validators.required]
     });
+
+    this.service.pageLoaded.subscribe(console.log);
+    this.service.loadPage(4);
   }
 
   onSubmit() {

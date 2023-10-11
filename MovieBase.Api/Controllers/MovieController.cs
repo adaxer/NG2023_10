@@ -27,13 +27,13 @@ public class MovieController : ControllerBase
         this.mapper = mapper;
     }
 
-    [HttpGet("[Action]", Name = "GetAllMovies")]
+    [HttpGet("[Action]/{pageSize}/{page}", Name = "GetAllMovies")]
     [Produces(MediaTypeNames.Application.Xml, MediaTypeNames.Application.Json)]
     [ResponseCache(Duration=10)]
-    public async Task<IActionResult> List()
+    public async Task<IActionResult> List(int pageSize, int page)
     {
         await Task.Delay(1000);
-        var result = (await db.Movies.ToListAsync()).Select(mapper.Map<Movie, MovieDTO>).ToList();
+        var result = (await db.Movies.Skip(page*pageSize).Take(pageSize).ToListAsync()).Select(mapper.Map<Movie, MovieDTO>).ToList();
         return Ok(result);
     }
 

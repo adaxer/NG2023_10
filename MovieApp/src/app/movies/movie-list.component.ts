@@ -11,7 +11,7 @@ import { MovieInfo } from '../models/movieInfo';
 })
 export class MovieListComponent implements OnInit {
   busy=signal(false);
-  
+
   movies: MovieInfo[] = [];
   displayedColumns: string[] = ['title', 'director', 'released'];
 
@@ -19,12 +19,11 @@ export class MovieListComponent implements OnInit {
 
   ngOnInit(): void {
     this.busy.set(true);
-    this.movieService.getMovies().subscribe(value => {
-      this.movies=value;
+    this.movieService.pageLoaded.subscribe(movies => {
+      this.movies=movies;
       this.busy.set(false);
       console.log(this.movies);
     });
-
   }
 
   isBusy()  {return this.busy()};
