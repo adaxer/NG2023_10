@@ -1,6 +1,7 @@
 
 <div *ngIf="movies">
   <h3>Movies</h3>
+  <input #searchInput [(ngModel)]="searchText" placeholder="Suche" />
   <mat-list>
     <mat-list-item *ngFor="let movie of movies" [routerLink]="['/movie', movie!.id]">
       <span matListItemTitle>{{ movie.info }}</span>

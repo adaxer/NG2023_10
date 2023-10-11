@@ -33,7 +33,17 @@ public class MovieController : ControllerBase
     public async Task<IActionResult> List(int pageSize, int page)
     {
         await Task.Delay(1000);
-        var result = (await db.Movies.Skip(page*pageSize).Take(pageSize).ToListAsync()).Select(mapper.Map<Movie, MovieDTO>).ToList();
+        var result = (await db.Movies.Skip(page * pageSize).Take(pageSize).ToListAsync()).Select(mapper.Map<Movie, MovieDTO>).ToList();
+        return Ok(result);
+    }
+
+    [HttpGet("[Action]/{query}")]
+    public async Task<IActionResult> Search(string query)
+    {
+        var result = (await db.Movies
+            .Where(m=>m.Title.Contains(query, StringComparison.InvariantCultureIgnoreCase) || m.Director.Contains(query, StringComparison.InvariantCultureIgnoreCase))
+            .ToListAsync())
+            .Select(mapper.Map<Movie, MovieDTO>).ToList();
         return Ok(result);
     }
 

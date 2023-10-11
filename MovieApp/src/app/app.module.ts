@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { SharedControlsModule } from 'projects/shared-controls/src/public-api';
 
 import { MatListModule } from '@angular/material/list';
@@ -33,6 +34,7 @@ import { ToUpperPipe } from './pipes/to-upper.pipe';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    FormsModule,
     MatListModule,
     MatSidenavModule,
     MatTableModule,
