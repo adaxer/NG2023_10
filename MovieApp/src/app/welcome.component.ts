@@ -1,5 +1,6 @@
 import { Component, computed, signal, effect, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CanBeDirty } from './models/can-be-dirty';
 
 @Component({
   selector: 'app-welcome',
@@ -7,10 +8,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styles: [
   ]
 })
-export class WelcomeComponent implements OnInit {
+export class WelcomeComponent implements OnInit, CanBeDirty {
 
   constructor(private fb: FormBuilder) { }
   form!: FormGroup;
+  isDirty = false;
 
   startColor = "Orange";
 
@@ -47,6 +49,7 @@ export class WelcomeComponent implements OnInit {
       this.firstName = this.form.value.firstName;
       this.lastName = this.form.value.lastName;
       console.log('Form is Submitted!', this.form.value);
+      this.isDirty = true;
     } else {
       console.log('Form is invalid!');
     }
