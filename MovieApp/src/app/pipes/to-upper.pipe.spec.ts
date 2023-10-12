@@ -7,12 +7,13 @@ describe('ToUpperPipe', () => {
   beforeEach(() => {
     pipe = new ToUpperPipe();
   });
-
-  it('should transform "Hello" to "HELLO"', () => {
-    expect(pipe.transform('hello')).toBe('HELLO');
-  });
-
-  it('should transform "worlD" to "WORLD"', () => {
-    expect(pipe.transform('worlD')).toBe('WORLD');
+  [
+    { parameter: "_Hello", result: "HELLO" },
+    { parameter: "worlD", result: "WORLD" },
+    { parameter: "", result: ""}
+  ].forEach((dataSet) => {
+    it('should be ' + dataSet.result + ' when parameter is ' + dataSet.parameter, () => {
+      expect(pipe.transform(dataSet.parameter)).toBe(dataSet.result);
+    });
   });
 });

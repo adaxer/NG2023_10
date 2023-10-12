@@ -16,7 +16,6 @@ describe('MovieService', () => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],
             providers: [
-                MovieService,
                 { provide: Environment, useValue: mockEnv }
             ]
         });
@@ -33,7 +32,7 @@ describe('MovieService', () => {
         expect(service).toBeTruthy();
     });
 
-    it('should fetch movies list', () => {
+    it('should fetch movies list', (done: DoneFn ) => {
         const mockMoviesInfo: MovieInfo[] = [
             { id: 1, info: "Movie 1" },
             { id: 2, info: "Movie 2" }
@@ -42,6 +41,7 @@ describe('MovieService', () => {
         service.getMovies().subscribe(data => {
             expect(data.length).toBe(2);
             expect(data).toEqual(mockMoviesInfo);
+            done();
         });
 
         const req = httpMock.expectOne(`${mockEnv.apiBaseUrl}/movie/list`);
@@ -49,7 +49,7 @@ describe('MovieService', () => {
         req.flush(mockMoviesInfo);
     });
 
-    it('should fetch movie details by id', () => {
+    it('should fetch movie details by id', (done: DoneFn) => {
         const mockMovie: Movie = {
             id: 1,
             title: "Movie 1",
@@ -59,6 +59,7 @@ describe('MovieService', () => {
 
         service.getDetails(1)!.subscribe(data => {
             expect(data).toEqual(mockMovie);
+            done();
         });
 
         const req = httpMock.expectOne(`${mockEnv.apiBaseUrl}/movie/1`);
